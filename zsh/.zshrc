@@ -1,5 +1,5 @@
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
+export PATH="$HOME/.local/bin:$HOME/.atuin/bin:$PATH"
 
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -122,17 +122,9 @@ alias du="dust"
 alias lg="lazygit"
 alias nvim2='NVIM_APPNAME=nvim-custom nvim'
 
-function y() {
-	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
-	yazi "$@" --cwd-file="$tmp"
-	if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-		cd -- "$cwd"
-	fi
-	rm -f -- "$tmp"
-}
 
 
-eval "$(mise activate zsh)"
+eval "$(~/.local/bin/mise activate zsh)"
 
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow'
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -1153,3 +1145,7 @@ self-atuin-ai-question-mark() {
 # Set up keybindings
 zle -N self-atuin-ai-question-mark
 bindkey '?' self-atuin-ai-question-mark # Question mark
+eval "$(starship init zsh)"
+
+. "$HOME/.atuin/bin/env"
+eval "$(atuin init zsh)"

@@ -1,5 +1,5 @@
 format = """
-[╭─](bold blue)$os$directory$git_branch$git_status$nodejs$python$rust$docker_context
+[╭─](bold blue)$os  $directory$git_branch$git_status$nodejs$python$rust$docker_context
 [╰─](bold blue)$character"""
 
 command_timeout = 1000
@@ -7,6 +7,9 @@ command_timeout = 1000
 [os]
 disabled = false
 style = "bold blue"
+
+[os.symbols]
+Ubuntu = "\uf31b"
 
 [directory]
 style = "bold cyan"
