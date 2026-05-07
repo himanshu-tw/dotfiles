@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>himanshu-tw/dotfiles</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #0d1117; color: #e6edf3; font-family: 'JetBrains Mono', monospace; display: grid; place-items: center; height: 100vh; }
+    .container { text-align: center; max-width: 600px; padding: 2rem; }
+    h1 { color: #58a6ff; font-size: 2rem; margin-bottom: 0.5rem; }
+    p { color: #8b949e; margin-bottom: 2rem; }
+    .cmd { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 1rem 1.5rem; font-size: 0.95rem; color: #3fb950; cursor: pointer; position: relative; }
+    .cmd span { color: #58a6ff; }
+    .copy-btn { position: absolute; right: 1rem; top: 50%; transform: translateY(-50%); background: #21262d; border: 1px solid #30363d; color: #8b949e; padding: 0.2rem 0.6rem; border-radius: 4px; cursor: pointer; font-size: 0.75rem; }
+    .copy-btn:hover { color: #e6edf3; }
+    .note { margin-top: 1.5rem; color: #8b949e; font-size: 0.8rem; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>~/dotfiles</h1>
+    <p>Himanshu's dev environment. One command setup for Debian-based systems.</p>
+    <div class="cmd">
+      <span>$</span> wget -qO- https://himanshu-tw.github.io/dotfiles/install.sh | bash
+      <button class="copy-btn" onclick="copy()">copy</button>
+    </div>
+    <p class="note">Installs: Alacritty · Zsh · Starship · Neovim · Tmux · and more</p>
+  </div>
+  <script>
+    function copy() {
+      navigator.clipboard.writeText('wget -qO- https://himanshu-tw.github.io/dotfiles/install.sh | bash');
+      document.querySelector('.copy-btn').textContent = 'copied!';
+      setTimeout(() => document.querySelector('.copy-btn').textContent = 'copy', 2000);
+    }
+  </script>
+</body>
+</html>
