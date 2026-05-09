@@ -8,8 +8,8 @@ echo "==> Starting dotfiles setup..."
 
 # System packages
 echo "==> Installing system packages..."
-sudo apt update -qq
-sudo apt install -y git curl unzip zsh tmux ripgrep fd-find fzf bat eza neovim alacritty
+yay -Syu
+yay -S git curl unzip zsh tmux ripgrep fd-find fzf bat eza neovim alacritty
 
 # Oh My Zsh
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
@@ -101,6 +101,10 @@ ln -sf $DOTFILES/zsh/.zshrc ~/.zshrc
 ln -sf $DOTFILES/starship/starship.toml ~/.config/starship.toml
 ln -sf $DOTFILES/tmux/.tmux.conf ~/.tmux.conf
 ln -sf $DOTFILES/nvim ~/.config/nvim
+
+
+echo "==> GitHub SSH setup"
+./git-ssh/github-ssh-setup.sh
 
 echo ""
 echo "==> Done! Restart terminal or run: exec zsh"

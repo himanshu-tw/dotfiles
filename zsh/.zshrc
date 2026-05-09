@@ -109,6 +109,7 @@ export EDITOR="nvim"
 # Example aliases
 alias zshconfig="nvim ~/.zshrc"
 alias ohmyzsh="nvim ~/.oh-my-zsh"
+alias hyprconf="nvim ~/.config/hypr/hyprland.conf"
 alias cd="z"
 alias ls="eza --icons"
 alias ll="eza -lah --icons --git --group-directories-first"
