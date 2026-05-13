@@ -8,8 +8,8 @@ echo "==> Starting dotfiles setup..."
 
 # System packages
 echo "==> Installing system packages..."
-yay -Syu
-yay -S git curl unzip zsh tmux ripgrep fd-find fzf bat eza neovim alacritty
+sudo apt update && sudo apt upgrade -y
+sudo apt install git curl alacritty zsh eza bat bottom ripgrep fzf zoxide
 
 # Oh My Zsh
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
@@ -42,23 +42,6 @@ if ! command -v mise &> /dev/null; then
 else
   echo "==> Mise already installed, skipping."
 fi
-
-# Atuin
-if ! command -v atuin &> /dev/null; then
-  echo "==> Installing Atuin..."
-  curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh
-else
-  echo "==> Atuin already installed, skipping."
-fi
-
-# Zoxide
-if ! command -v zoxide &> /dev/null; then
-  echo "==> Installing Zoxide..."
-  curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
-else
-  echo "==> Zoxide already installed, skipping."
-fi
-
 # Nerd Font
 if ! fc-list | grep -qi "JetBrainsMono Nerd Font"; then
   echo "==> Installing JetBrainsMono Nerd Font..."
@@ -69,14 +52,6 @@ if ! fc-list | grep -qi "JetBrainsMono Nerd Font"; then
   rm /tmp/JetBrainsMono.zip
 else
   echo "==> JetBrainsMono Nerd Font already installed, skipping."
-fi
-
-# Tmux Plugin Manager
-if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
-  echo "==> Installing TPM..."
-  git clone -q https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-else
-  echo "==> TPM already installed, skipping."
 fi
 
 # Default shell to zsh
@@ -91,16 +66,17 @@ mkdir -p ~/.config/alacritty
 
 # Remove existing to avoid nesting issue
 rm -rf ~/.config/nvim
-rm -f ~/.config/alacritty/alacritty.toml
-rm -f ~/.zshrc
 rm -f ~/.config/starship.toml
+rm -rf ~/.config/alacritty/alacritty.toml
 rm -f ~/.tmux.conf
+rm -f ~/.zshrc
 
-ln -sf $DOTFILES/alacritty/alacritty.toml ~/.config/alacritty/alacritty.toml
-ln -sf $DOTFILES/zsh/.zshrc ~/.zshrc
 ln -sf $DOTFILES/starship/starship.toml ~/.config/starship.toml
-ln -sf $DOTFILES/tmux/.tmux.conf ~/.tmux.conf
-ln -sf $DOTFILES/nvim ~/.config/nvim
+ln -sf $DOTFILES/alacritty/alacritty.toml ~/.config/alacritty/alacritty.toml
+ln -sf $DOTFILES/tmux/tmux.conf ~/.config/tmux/tmux.conf
+ln -sf $DOTFILES/zsh/.zshrc ~/.zshrc
+
+git clone git@github.com:himanshu-tw/nvim-config.git ~/.config/nvim
 
 
 echo "==> GitHub SSH setup"
