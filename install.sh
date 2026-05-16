@@ -9,7 +9,7 @@ echo "==> Starting dotfiles setup..."
 # System packages
 echo "==> Installing system packages..."
 sudo apt update && sudo apt upgrade -y
-sudo apt install git curl alacritty zsh eza bat bottom ripgrep fzf zoxide
+sudo apt install git curl alacritty zsh eza bat ripgrep fzf zoxide
 
 # Oh My Zsh
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
@@ -73,7 +73,6 @@ rm -f ~/.zshrc
 
 ln -sf $DOTFILES/starship/starship.toml ~/.config/starship.toml
 ln -sf $DOTFILES/alacritty/alacritty.toml ~/.config/alacritty/alacritty.toml
-ln -sf $DOTFILES/tmux/tmux.conf ~/.config/tmux/tmux.conf
 ln -sf $DOTFILES/zsh/.zshrc ~/.zshrc
 
 git clone git@github.com:himanshu-tw/nvim-config.git ~/.config/nvim
