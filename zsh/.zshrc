@@ -10,6 +10,7 @@ plugins=(
   python
   zsh-autosuggestions
   zsh-syntax-highlighting
+  vi-mode
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -37,6 +38,7 @@ alias ls="eza --icons"
 alias ll="eza -lah --icons --git --group-directories-first"
 alias lt="eza --tree --level=2"
 alias cd='z'
+alias cat='batcat'
 
 # ── git aliases (OMZ git plugin ke upar extra) ──────
 alias gl='git log --oneline --graph --decorate -10'
@@ -54,7 +56,10 @@ alias ta='tmux attach || tmux new-session'
 alias lg="lazygit"
 
 alias grep="rg"
-alias top="btm"
 
 # ── Starship ────────────────────────────────────────
 eval "$(starship init zsh)"
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/home/himanshu-tiwari/.lmstudio/bin"
+# End of LM Studio CLI section
