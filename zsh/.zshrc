@@ -1,6 +1,6 @@
 # ── Oh My Zsh ───────────────────────────────────────
 export ZSH="$HOME/.oh-my-zsh"
-ZSH_THEME=""  # Starship handle karega
+ZSH_THEME="robbyrussell"
 
 plugins=(
   git
@@ -57,9 +57,14 @@ alias lg="lazygit"
 
 alias grep="rg"
 
-# ── Starship ────────────────────────────────────────
-eval "$(starship init zsh)"
 
 # Added by LM Studio CLI (lms)
 export PATH="$PATH:/home/himanshu-tiwari/.lmstudio/bin"
 # End of LM Studio CLI section
+
+# bun completions
+[ -s "/home/himanshu-tiwari/.bun/_bun" ] && source "/home/himanshu-tiwari/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
