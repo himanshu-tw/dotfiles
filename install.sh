@@ -21,14 +21,14 @@ fi
 
 # Zsh plugins
 echo "==> Installing Zsh plugins..."
-[ ! -d "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions" ] && \
+[ ! -d "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions" ] &&
   git clone -q https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
-[ ! -d "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting" ] && \
+[ ! -d "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting" ] &&
   git clone -q https://github.com/zsh-users/zsh-syntax-highlighting ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
 # Mise
-if ! command -v mise &> /dev/null; then
+if ! command -v mise &>/dev/null; then
   echo "==> Installing Mise..."
   curl https://mise.run | sh
 else
@@ -40,7 +40,7 @@ if ! fc-list | grep -qi "JetBrainsMono Nerd Font"; then
   wget -q https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.zip -O /tmp/JetBrainsMono.zip
   mkdir -p ~/.local/share/fonts/JetBrainsMono
   unzip -q /tmp/JetBrainsMono.zip -d ~/.local/share/fonts/JetBrainsMono
-  fc-cache -fv > /dev/null
+  fc-cache -fv >/dev/null
   rm /tmp/JetBrainsMono.zip
 else
   echo "==> JetBrainsMono Nerd Font already installed, skipping."
@@ -69,9 +69,8 @@ ln -sf $DOTFILES/zsh/.zshrc ~/.zshrc
 
 git clone git@github.com:himanshu-tw/nvim-config.git ~/.config/nvim
 
-
-# echo "==> GitHub SSH setup"
-# ./git-ssh/github-ssh-setup.sh
+echo "==> GitHub SSH setup"
+./git-ssh/github-ssh-setup.sh
 
 echo ""
 echo "==> Done! Restart terminal or run: exec zsh"
