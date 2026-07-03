@@ -27,14 +27,6 @@ echo "==> Installing Zsh plugins..."
 [ ! -d "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting" ] && \
   git clone -q https://github.com/zsh-users/zsh-syntax-highlighting ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
-# Starship
-if ! command -v starship &> /dev/null; then
-  echo "==> Installing Starship..."
-  curl -sS https://starship.rs/install.sh | sh -s -- -y
-else
-  echo "==> Starship already installed, skipping."
-fi
-
 # Mise
 if ! command -v mise &> /dev/null; then
   echo "==> Installing Mise..."
@@ -78,8 +70,8 @@ ln -sf $DOTFILES/zsh/.zshrc ~/.zshrc
 git clone git@github.com:himanshu-tw/nvim-config.git ~/.config/nvim
 
 
-echo "==> GitHub SSH setup"
-./git-ssh/github-ssh-setup.sh
+# echo "==> GitHub SSH setup"
+# ./git-ssh/github-ssh-setup.sh
 
 echo ""
 echo "==> Done! Restart terminal or run: exec zsh"
