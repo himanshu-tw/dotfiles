@@ -68,3 +68,10 @@ export PATH="$PATH:/home/himanshu-tiwari/.lmstudio/bin"
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+export PATH=$PATH:$HOME/.local/bin
+
+# opencode
+export PATH=/home/himanshu-tiwari/.opencode/bin:$PATH
+
+# nub
+export PATH="$HOME/.nub/bin:$PATH"
