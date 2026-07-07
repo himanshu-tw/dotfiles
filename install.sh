@@ -8,8 +8,8 @@ echo "==> Starting dotfiles setup..."
 
 # System packages
 echo "==> Installing system packages..."
-sudo apt update && sudo apt upgrade -y
-sudo apt install git curl alacritty zsh eza bat ripgrep fzf zoxide
+sudo dnf update
+sudo dnf install curl alacritty zsh eza ripgrep fzf zoxide
 
 # Oh My Zsh
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
@@ -58,16 +58,15 @@ mkdir -p ~/.config/alacritty
 
 # Remove existing to avoid nesting issue
 rm -rf ~/.config/nvim
-rm -f ~/.config/starship.toml
 rm -rf ~/.config/alacritty/alacritty.toml
 rm -f ~/.tmux.conf
 rm -f ~/.zshrc
 
-ln -sf $DOTFILES/starship/starship.toml ~/.config/starship.toml
 ln -sf $DOTFILES/alacritty/alacritty.toml ~/.config/alacritty/alacritty.toml
 ln -sf $DOTFILES/zsh/.zshrc ~/.zshrc
+ln -sf $DOTFILES/tmux/.tmux.conf ~/.tmux.conf
 
-git clone git@github.com:himanshu-tw/nvim-config.git ~/.config/nvim
+git clone https://github.com/himanshu-tw/nvim-config.git ~/.config/nvim
 
 echo "==> GitHub SSH setup"
 ./git-ssh/github-ssh-setup.sh
