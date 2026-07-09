@@ -8,8 +8,8 @@ echo "==> Starting dotfiles setup..."
 
 # System packages
 echo "==> Installing system packages..."
-sudo dnf update
-sudo dnf install curl alacritty zsh eza ripgrep fzf zoxide
+sudo apt update && sudo apt upgrade -y
+sudo apt install curl alacritty zsh eza ripgrep fzf zoxide
 
 # Oh My Zsh
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
@@ -66,7 +66,7 @@ ln -sf $DOTFILES/alacritty/alacritty.toml ~/.config/alacritty/alacritty.toml
 ln -sf $DOTFILES/zsh/.zshrc ~/.zshrc
 ln -sf $DOTFILES/tmux/.tmux.conf ~/.tmux.conf
 
-git clone https://github.com/himanshu-tw/nvim-config.git ~/.config/nvim
+git clone https://github.com/himanshu-tw/nvim-custom.git ~/.config/nvim
 
 echo "==> GitHub SSH setup"
 ./git-ssh/github-ssh-setup.sh

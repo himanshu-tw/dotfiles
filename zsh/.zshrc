@@ -3,11 +3,6 @@ export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="robbyrussell"
 
 plugins=(
-  git
-  docker
-  docker-compose
-  node
-  python
   zsh-autosuggestions
   zsh-syntax-highlighting
   vi-mode
@@ -38,11 +33,6 @@ alias ls="eza --icons"
 alias ll="eza -lah --icons --git --group-directories-first"
 alias lt="eza --tree --level=2"
 alias cd='z'
-alias cat='batcat'
-
-# ── git aliases (OMZ git plugin ke upar extra) ──────
-alias gl='git log --oneline --graph --decorate -10'
-alias gcb='git checkout -b'
 
 # ── docker aliases ──────────────────────────────────
 alias dcu='docker compose up -d'
@@ -53,14 +43,9 @@ alias dcl='docker compose logs -f'
 alias v='nvim'
 alias py='python3'
 alias ta='tmux attach || tmux new-session'
-alias lg="lazygit"
 
 alias grep="rg"
 
-
-# Added by LM Studio CLI (lms)
-export PATH="$PATH:/home/himanshu-tiwari/.lmstudio/bin"
-# End of LM Studio CLI section
 
 # bun completions
 [ -s "/home/himanshu-tiwari/.bun/_bun" ] && source "/home/himanshu-tiwari/.bun/_bun"
