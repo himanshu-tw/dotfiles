@@ -9,7 +9,7 @@ echo "==> Starting dotfiles setup..."
 # System packages
 echo "==> Installing system packages..."
 sudo apt update && sudo apt upgrade -y
-sudo apt install curl alacritty zsh eza ripgrep fzf zoxide
+sudo apt install curl alacritty zsh eza ripgrep fzf zoxide tmux neovim
 
 # Oh My Zsh
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
