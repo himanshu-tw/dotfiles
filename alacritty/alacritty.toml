@@ -14,11 +14,11 @@ size   = 13.0
 y = 2
 
 [cursor]
-style = { shape = "Beam", blinking = "On" }
+style = { shape = "Block", blinking = "Off" }
 blink_interval = 500
 
 [scrolling]
 history = 10000
 
 [general]
-import = ["~/.config/alacritty/catppuccin/catppuccin-mocha.toml"]
+import = ["~/.config/alacritty/themes/everforest.toml"]

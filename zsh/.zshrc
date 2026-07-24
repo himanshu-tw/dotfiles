@@ -60,3 +60,8 @@ export PATH=/home/himanshu-tiwari/.opencode/bin:$PATH
 
 # nub
 export PATH="$HOME/.nub/bin:$PATH"
+
+# opencode
+export PATH=/home/himanshu-tw/.opencode/bin:$PATH
+eval "$(uv generate-shell-completion zsh)"
+eval "$(uvx --generate-shell-completion zsh)"
