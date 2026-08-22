@@ -8,8 +8,13 @@ echo "==> Starting dotfiles setup..."
 
 # System packages
 echo "==> Installing system packages..."
-sudo apt update && sudo apt upgrade -y
-sudo apt install curl alacritty zsh eza ripgrep fzf zoxide tmux neovim
+sudo dnf config-manager addrepo --from-repofile https://download.docker.com/linux/fedora/docker-ce.repo
+sudo dnf upgrade --refresh -y
+sudo dnf install curl alacritty zsh eza ripgrep fzf zoxide tmux neovim btop ffmpeg python-img2pdf
+sudo dnf install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+sudo systemctl enable --now docker
+sudo groupadd docker
+sudo usermod -aG docker $USER
 
 # Oh My Zsh
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
