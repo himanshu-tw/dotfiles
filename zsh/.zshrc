@@ -41,7 +41,7 @@ alias lt="eza --tree --level=2"
 alias cd='z'
 
 # ── docker aliases ──────────────────────────────────
-alias dcu='docker compose up -d'
+alias dcu='docker compose up --build'
 alias dcd='docker compose down'
 alias dcl='docker compose logs -f'
 
@@ -190,3 +190,6 @@ nr() {
     fi
   fi
 }
+
+# opencode
+export PATH=/home/himanshu/.opencode/bin:$PATH
