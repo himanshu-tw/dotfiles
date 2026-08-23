@@ -8,12 +8,9 @@ echo "==> Starting dotfiles setup..."
 
 # System packages
 echo "==> Installing system packages..."
-sudo dnf config-manager addrepo --from-repofile https://download.docker.com/linux/fedora/docker-ce.repo
-sudo dnf upgrade --refresh -y
-sudo dnf install curl alacritty zsh eza ripgrep fzf zoxide tmux neovim btop ffmpeg python-img2pdf
-sudo dnf install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-sudo systemctl enable --now docker
-sudo groupadd docker
+sudo apt install curl alacritty zsh eza ripgrep fzf zoxide tmux neovim btop ffmpeg python-img2pdf
+sudo apt remove $(dpkg --get-selections docker.io docker-compose docker-compose-v2 docker-doc docker-buildx podman-docker containerd runc | cut -f1)
+curl -fsSL https://get.docker.com | sh
 sudo usermod -aG docker $USER
 
 # Oh My Zsh
