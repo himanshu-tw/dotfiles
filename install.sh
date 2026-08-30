@@ -8,8 +8,9 @@ echo "==> Starting dotfiles setup..."
 
 # System packages
 echo "==> Installing system packages..."
-sudo apt install curl alacritty zsh eza ripgrep fzf zoxide tmux neovim btop ffmpeg python-img2pdf
-sudo apt remove $(dpkg --get-selections docker.io docker-compose docker-compose-v2 docker-doc docker-buildx podman-docker containerd runc | cut -f1)
+sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
+sudo dnf install --allowerasing curl alacritty zsh eza ripgrep fzf zoxide tmux neovim btop ffmpeg python3-img2pdf
+sudo dnf remove docker docker-client docker-client-latest docker-common docker-latest docker-latest-logrotate docker-logrotate docker-engine podman-docker containerd runc
 curl -fsSL https://get.docker.com | sh
 sudo usermod -aG docker $USER
 
