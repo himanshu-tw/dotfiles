@@ -8,9 +8,8 @@ echo "==> Starting dotfiles setup..."
 
 # System packages
 echo "==> Installing system packages..."
-sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
-sudo dnf install --allowerasing curl alacritty zsh eza ripgrep fzf zoxide tmux neovim btop ffmpeg python3-img2pdf
-sudo dnf remove docker docker-client docker-client-latest docker-common docker-latest docker-latest-logrotate docker-logrotate docker-engine podman-docker containerd runc
+sudo apt install git curl alacritty zsh eza ripgrep fzf zoxide tmux neovim btop ffmpeg python3-img2pdf fd-find emacs
+sudo apt remove $(dpkg --get-selections docker.io docker-compose docker-compose-v2 docker-doc docker-buildx podman-docker containerd runc | cut -f1)
 curl -fsSL https://get.docker.com | sh
 sudo usermod -aG docker $USER
 
@@ -70,6 +69,9 @@ ln -sf $DOTFILES/zsh/.zshrc ~/.zshrc
 ln -sf $DOTFILES/tmux/.tmux.conf ~/.tmux.conf
 
 git clone https://github.com/himanshu-tw/nvim-custom.git ~/.config/nvim
+
+git clone --depth 1 https://github.com/doomemacs/core ~/.config/emacs
+~/.config/emacs/bin/doom install
 
 echo "==> GitHub SSH setup"
 ./git-ssh/github-ssh-setup.sh
