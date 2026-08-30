@@ -193,3 +193,4 @@ nr() {
 
 # opencode
 export PATH=/home/himanshu/.opencode/bin:$PATH
+export PATH="$HOME/.config/emacs/bin:$PATH"
