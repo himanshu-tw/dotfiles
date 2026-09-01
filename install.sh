@@ -45,6 +45,7 @@ fi
 
 # Symlinks
 echo "==> Creating symlinks..."
+./symlink-stow.sh
 
 echo "==> GitHub SSH setup"
 ./git-ssh/github-ssh-setup.sh
