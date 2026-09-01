@@ -22,3 +22,5 @@ stow alacritty
 stow zsh
 stow tmux
 stow nvim
+stow sway
+stow waybar

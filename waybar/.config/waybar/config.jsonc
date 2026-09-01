@@ -1,0 +1,37 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 28,
+    "modules-left": ["sway/workspaces"],
+    "modules-center": [],
+    "modules-right": ["battery", "clock"],
+
+    "sway/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true
+    },
+
+    "clock": {
+        "timezone": "Asia/Kolkata",
+        "format": "{:%a %d %b  %H:%M}",
+        "tooltip-format": "{:%Y-%m-%d %H:%M:%S}"
+    },
+
+    "battery": {
+        "interval": 10,
+        "format": "{capacity}%  {icon}",
+        "format-icons": ["", "", "", "", ""],
+        "format-charging": "{capacity}%  ",
+        "states": {
+            "warning": 20,
+            "critical": 10
+        },
+        "format": "{icon} {capacity}%",
+        "format-charging": "\uf0e7 {capacity}%",
+        "format-plugged": "\uf1e6 {capacity}%",
+        "format-icons": {
+            "default": ["\uf244", "\uf243", "\uf242", "\uf241", "\uf240"],
+            "charging": ["\uf244", "\uf243", "\uf242", "\uf241", "\uf240"]
+        }
+    }
+}
