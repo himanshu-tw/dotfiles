@@ -8,6 +8,7 @@ echo "==> Starting dotfiles setup..."
 
 # System packages
 echo "==> Installing system packages..."
+sudo pacman -Syu
 sudo pacman -S git curl alacritty zsh eza ripgrep fzf zoxide tmux neovim btop ffmpeg img2pdf fd ttf-jetbrains-mono-nerd docker docker-compose docker-buildx
 sudo systemctl enable --now docker.service
 sudo usermod -aG docker $USER
@@ -44,19 +45,6 @@ fi
 
 # Symlinks
 echo "==> Creating symlinks..."
-mkdir -p ~/.config/alacritty
-
-# Remove existing to avoid nesting issue
-rm -rf ~/.config/nvim
-rm -rf ~/.config/alacritty/alacritty.toml
-rm -f ~/.tmux.conf
-rm -f ~/.zshrc
-
-ln -sf $DOTFILES/alacritty/alacritty.toml ~/.config/alacritty/alacritty.toml
-ln -sf $DOTFILES/zsh/.zshrc ~/.zshrc
-ln -sf $DOTFILES/tmux/.tmux.conf ~/.tmux.conf
-
-git clone https://github.com/himanshu-tw/nvim-custom.git ~/.config/nvim
 
 echo "==> GitHub SSH setup"
 ./git-ssh/github-ssh-setup.sh
