@@ -8,9 +8,8 @@ echo "==> Starting dotfiles setup..."
 
 # System packages
 echo "==> Installing system packages..."
-sudo apt install git curl alacritty zsh eza ripgrep fzf zoxide tmux neovim btop ffmpeg python3-img2pdf fd-find emacs
-sudo apt remove $(dpkg --get-selections docker.io docker-compose docker-compose-v2 docker-doc docker-buildx podman-docker containerd runc | cut -f1)
-curl -fsSL https://get.docker.com | sh
+sudo pacman -S git curl alacritty zsh eza ripgrep fzf zoxide tmux neovim btop ffmpeg img2pdf fd ttf-jetbrains-mono-nerd docker docker-compose docker-buildx
+sudo systemctl enable --now docker.service
 sudo usermod -aG docker $USER
 
 # Oh My Zsh
@@ -36,17 +35,6 @@ if ! command -v mise &>/dev/null; then
 else
   echo "==> Mise already installed, skipping."
 fi
-# Nerd Font
-if ! fc-list | grep -qi "JetBrainsMono Nerd Font"; then
-  echo "==> Installing JetBrainsMono Nerd Font..."
-  wget -q https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.zip -O /tmp/JetBrainsMono.zip
-  mkdir -p ~/.local/share/fonts/JetBrainsMono
-  unzip -q /tmp/JetBrainsMono.zip -d ~/.local/share/fonts/JetBrainsMono
-  fc-cache -fv >/dev/null
-  rm /tmp/JetBrainsMono.zip
-else
-  echo "==> JetBrainsMono Nerd Font already installed, skipping."
-fi
 
 # Default shell to zsh
 if [ "$SHELL" != "$(which zsh)" ]; then
@@ -69,9 +57,6 @@ ln -sf $DOTFILES/zsh/.zshrc ~/.zshrc
 ln -sf $DOTFILES/tmux/.tmux.conf ~/.tmux.conf
 
 git clone https://github.com/himanshu-tw/nvim-custom.git ~/.config/nvim
-
-git clone --depth 1 https://github.com/doomemacs/core ~/.config/emacs
-~/.config/emacs/bin/doom install
 
 echo "==> GitHub SSH setup"
 ./git-ssh/github-ssh-setup.sh
