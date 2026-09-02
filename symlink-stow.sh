@@ -26,3 +26,4 @@ stow sway
 stow waybar
 stow wofi
 stow starship
+stow ghostty
