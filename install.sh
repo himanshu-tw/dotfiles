@@ -37,6 +37,9 @@ else
   echo "==> Mise already installed, skipping."
 fi
 
+# Starship
+curl -sS https://starship.rs/install.sh | sh
+
 # Default shell to zsh
 if [ "$SHELL" != "$(which zsh)" ]; then
   echo "==> Changing default shell to zsh..."
