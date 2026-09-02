@@ -122,7 +122,7 @@ tm() {
   # 2. Extract just the folder name to use as a clean tmux session name
   local session_name
   session_name=$(basename "$dir" | tr '.' '_')
-  cd $session_name
+  cd "$dir"
 
   # 3. If the tmux session doesn't exist yet, build it in the background
   if ! tmux has-session -t "$session_name" 2>/dev/null; then
