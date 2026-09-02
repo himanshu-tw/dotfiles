@@ -9,22 +9,9 @@ echo "==> Starting dotfiles setup..."
 # System packages
 echo "==> Installing system packages..."
 sudo pacman -Syu
-sudo pacman -S git curl alacritty zsh eza ripgrep fzf zoxide tmux neovim btop ffmpeg img2pdf fd ttf-jetbrains-mono-nerd docker docker-compose docker-buildx
+sudo pacman -S git curl alacritty eza ripgrep fzf zoxide tmux neovim btop ffmpeg img2pdf fd ttf-jetbrains-mono-nerd docker docker-compose docker-buildx
 sudo systemctl enable --now docker.service
 sudo usermod -aG docker $USER
-
-# Oh My Zsh
-if [ ! -d "$HOME/.oh-my-zsh" ]; then
-  echo "==> Installing Oh My Zsh..."
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
-else
-  echo "==> Oh My Zsh already installed, skipping."
-fi
-
-# Zsh plugins
-echo "==> Installing Zsh plugins..."
-[ ! -d "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting" ] &&
-  git clone -q https://github.com/zsh-users/zsh-syntax-highlighting ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
 # Mise
 if ! command -v mise &>/dev/null; then
@@ -37,11 +24,6 @@ fi
 # Starship
 curl -sS https://starship.rs/install.sh | sh
 
-# Default shell to zsh
-if [ "$SHELL" != "$(which zsh)" ]; then
-  echo "==> Changing default shell to zsh..."
-  chsh -s $(which zsh)
-fi
 
 # Symlinks
 echo "==> Creating symlinks..."
