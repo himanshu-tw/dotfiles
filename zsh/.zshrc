@@ -1,6 +1,7 @@
 # ── Oh My Zsh ───────────────────────────────────────
 export ZSH="$HOME/.oh-my-zsh"
-ZSH_THEME="robbyrussell"
+
+# ZSH_THEME="robbyrussell"
 
 plugins=(
   zsh-autosuggestions
@@ -26,6 +27,9 @@ eval "$(~/.local/bin/mise activate zsh)"
 
 # ── zoxide ──────────────────────────────────────────
 eval "$(zoxide init zsh)"
+
+# ── starship ──────────────────────────────────────────
+eval "$(starship init zsh)"
 
 # ── Editor ──────────────────────────────────────────
 export EDITOR=nvim
