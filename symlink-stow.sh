@@ -24,3 +24,4 @@ stow tmux
 stow nvim
 stow sway
 stow waybar
+stow wofi
