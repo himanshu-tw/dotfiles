@@ -1,46 +1,35 @@
-# ── Oh My Zsh Framework ─────────────────────────────
-export ZSH="$HOME/.oh-my-zsh"
-
-# Enabled plugins (zsh-autosuggestions removed)
-plugins=(
-  zsh-syntax-highlighting
-  vi-mode
-)
-
-# Force Oh My Zsh vi-mode to use solid blocks for all modes
-VI_MODE_CURSOR_NORMAL=2
-VI_MODE_CURSOR_INSERT=2
-VI_MODE_CURSOR_VISUAL=2
-VI_MODE_CURSOR_OPPEND=2
-
-source $ZSH/oh-my-zsh.sh
+# ── Shell Vim Mode Configuration ────────────────────
+# Replicates the vi-mode plugin behavior in pure Bash
+set -o vi
 
 # ── Environment Variables & Paths ───────────────────
 export EDITOR=nvim
 export VISUAL=nvim
 
-# Consolidated path declarations (Bun, Nub, Emacs paths removed)
+# Consolidated path declarations
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="/home/himanshu-tiwari/.opencode/bin:/home/himanshu-tw/.opencode/bin:/home/himanshu/.opencode/bin:$PATH"
 
 # ── Shell History Config ────────────────────────────
 HISTSIZE=10000
-SAVEHIST=10000
-setopt HIST_IGNORE_DUPS HIST_IGNORE_SPACE SHARE_HISTORY
+HISTFILESIZE=10000
+# Erase duplicates, don't save spaces, append immediately to share history
+HISTCONTROL=ignoreboth:erasedups
+shopt -s histappend
+PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
 # ── Modern Tool Initializations ─────────────────────
-eval "$(~/.local/bin/mise activate zsh)"
-eval "$(zoxide init zsh)"
-eval "$(starship init zsh)"
+eval "$(~/.local/bin/mise activate bash)"
+eval "$(zoxide init bash)"
+eval "$(starship init bash)"
 
 # ── Tool Shell Completions ──────────────────────────
-eval "$(uv generate-shell-completion zsh)"
-eval "$(uvx --generate-shell-completion zsh)"
+eval "$(uv generate-shell-completion bash)"
+eval "$(uvx --generate-shell-completion bash)"
 
 # ── Aliases ─────────────────────────────────────────
 # Navigation & System
-alias zshconfig="nvim ~/.zshrc"
-alias ohmyzsh="nvim ~/.oh-my-zsh"
+alias bashconfig="nvim ~/.bashrc"
 alias cd='z'
 alias grep="rg"
 alias v='nvim'
@@ -69,8 +58,10 @@ gcf() {
 
   [ -z "$selected" ] && return 1
 
-  local query=$(echo "$selected" | head -n 1)
-  local branch=$(echo "$selected" | tail -n 1)
+  local query
+  local branch
+  query=$(echo "$selected" | head -n 1)
+  branch=$(echo "$selected" | tail -n 1)
 
   if [ "$query" = "$branch" ] || [ -n "$branch" ]; then
     git checkout "$branch"
@@ -93,7 +84,7 @@ tm() {
 
   local session_name
   session_name=$(basename "$dir" | tr '.' '_')
-  cd "$dir"
+  cd "$dir" || return 1
 
   if ! tmux has-session -t "$session_name" 2>/dev/null; then
     tmux new-session -d -s "$session_name" -c "$dir"
