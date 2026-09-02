@@ -1,0 +1,59 @@
+# Keep it on a single line, similar to Robby Russell
+format = """$directory$git_branch$git_status$package$golang$nodejs$python$rust$character"""
+
+# Right-side prompt for execution time (keeps the main line clean)
+right_format = """$cmd_duration"""
+
+[directory]
+style = "bold cyan"
+truncation_length = 3
+truncate_to_repo = true # Show relative path when inside a Git repo
+
+[git_branch]
+symbol = "🌱 "
+style = "bold magenta"
+format = "on [$symbol$branch]($style) "
+
+[git_status]
+style = "bold red"
+format = "[\\[$all_status$ahead_behind\\]]($style) "
+conflicted = "="
+ahead = "⇡"
+behind = "⇣"
+diverged = "⇕"
+untracked = "?"
+stashed = "$"
+modified = "!"
+staged = "+"
+renamed = "»"
+deleted = "✘"
+
+# Language modules - only show when relevant files exist
+[nodejs]
+symbol = "🟢 "
+format = "via [$symbol($version )]($style)"
+style = "bold green"
+
+[python]
+symbol = "🐍 "
+format = "via [$symbol($version )]($style)"
+style = "bold yellow"
+
+[rust]
+symbol = "🦀 "
+format = "via [$symbol($version )]($style)"
+style = "bold red"
+
+[golang]
+symbol = "🐹 "
+format = "via [$symbol($version )]($style)"
+style = "bold cyan"
+
+[cmd_duration]
+min_time = 2_000 # Only show if command takes longer than 2 seconds
+format = "took [$duration]($style) "
+style = "yellow"
+
+[character]
+success_symbol = "[➜](bold green) "
+error_symbol = "[➜](bold red) "
