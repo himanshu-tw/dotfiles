@@ -21,4 +21,4 @@ blink_interval = 500
 history = 10000
 
 [general]
-import = ["~/.config/alacritty/themes/everforest.toml"]
+import = ["~/.config/alacritty/themes/alacritty.toml"]
