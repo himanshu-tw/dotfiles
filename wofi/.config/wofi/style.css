@@ -1,0 +1,42 @@
+/* Entire Wofi Window */
+window {
+    margin: 0px;
+    border: 2px solid #4c566a;
+    border-radius: 12px;
+    background-color: #2e3440;
+    font-family: "Noto Sans", sans-serif;
+    font-size: 14px;
+}
+
+/* The Search Bar Box */
+#input {
+    margin: 10px;
+    border: 1px solid #434c5e;
+    border-radius: 6px;
+    padding: 8px;
+    background-color: #3b4252;
+    color: #eceff4;
+}
+
+/* The Outer Box for the App List */
+#outer-box {
+    margin: 5px;
+}
+
+/* Individual App Rows */
+#entry {
+    padding: 8px;
+    border-radius: 6px;
+    color: #d8dee9;
+}
+
+/* When you hover or select an app with arrow keys */
+#entry:selected {
+    background-color: #88c0d0;
+    color: #2e3440;
+}
+
+/* Text alignment for the App Names */
+#text {
+    margin-left: 10px;
+}
