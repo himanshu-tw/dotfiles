@@ -5,7 +5,7 @@ set -e
 PACKAGE="stow"
 
 # Check if the package is installed
-if pacman -Qi "$PACKAGE" > /dev/null 2>&1; then
+if dpkg -s "$PACKAGE" > /dev/null 2>&1; then
     echo "✔ $PACKAGE is installed."
 else
     echo "❌ $PACKAGE is NOT installed."

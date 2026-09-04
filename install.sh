@@ -8,10 +8,21 @@ echo "==> Starting dotfiles setup..."
 
 # System packages
 echo "==> Installing system packages..."
-sudo pacman -Syu
-sudo pacman -S git curl alacritty eza ripgrep fzf zoxide tmux neovim btop ffmpeg img2pdf fd ttf-jetbrains-mono-nerd docker docker-compose docker-buildx
+sudo apt update && sudo apt upgrade -y
+
+sudo apt install curl alacritty eza ripgrep fzf zoxide tmux neovim btop ffmpeg python-img2pdf fd-find unzip -y
+
+sudo apt remove $(dpkg --get-selections docker.io docker-compose docker-compose-v2 docker-doc docker-buildx podman-docker containerd runc | cut -f1)
+
+curl -fsSL https://get.docker.com | sh
 sudo systemctl enable --now docker.service
 sudo usermod -aG docker $USER
+
+# JetBrains Mono Nerd Font
+mkdir -p ~/.local/share/fonts
+wget https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.zip
+unzip JetBrainsMono.zip -d ~/.local/share/fonts/JetBrainsMono/
+rm JetBrainsMono.zip
 
 # Mise
 if ! command -v mise &>/dev/null; then
