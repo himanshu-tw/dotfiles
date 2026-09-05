@@ -22,7 +22,7 @@ stow alacritty
 stow zsh
 stow tmux
 stow nvim
-stow sway
+stow hypr
 stow waybar
 stow wofi
 stow starship
