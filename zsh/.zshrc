@@ -1,54 +1,52 @@
 # ── Shell Vim Mode Configuration ────────────────────
-# Replicates the vi-mode plugin behavior in pure Bash
-set -o vi
+bindkey -v
 
 # ── Environment Variables & Paths ───────────────────
 export EDITOR=nvim
 export VISUAL=nvim
 
-# Consolidated path declarations
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="/home/himanshu-tiwari/.opencode/bin:/home/himanshu-tw/.opencode/bin:/home/himanshu/.opencode/bin:$PATH"
 
 # ── Shell History Config ────────────────────────────
 HISTSIZE=10000
-HISTFILESIZE=10000
-# Erase duplicates, don't save spaces, append immediately to share history
-HISTCONTROL=ignoreboth:erasedups
-shopt -s histappend
-PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+SAVEHIST=10000
+HISTFILE=~/.zsh_history
+
+setopt APPEND_HISTORY
+setopt INC_APPEND_HISTORY
+setopt SHARE_HISTORY
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_REDUCE_BLANKS
 
 # ── Modern Tool Initializations ─────────────────────
-eval "$(~/.local/bin/mise activate bash)"
-eval "$(zoxide init bash)"
-eval "$(starship init bash)"
+eval "$(~/.local/bin/mise activate zsh)"
+eval "$(zoxide init zsh)"
+eval "$(starship init zsh)"
 
 # ── Tool Shell Completions ──────────────────────────
-eval "$(uv generate-shell-completion bash)"
-eval "$(uvx --generate-shell-completion bash)"
+eval "$(uv generate-shell-completion zsh)"
+eval "$(uvx --generate-shell-completion zsh)"
 
 # ── Aliases ─────────────────────────────────────────
-# Navigation & System
-alias bashconfig="nvim ~/.bashrc"
+alias bashconfig="nvim ~/.zshrc"
 alias cd='z'
 alias grep="rg"
 alias v='nvim'
 alias py='python3'
 alias ta='tmux attach || tmux new-session'
 
-# Modern ls (eza) replacement
 alias ls="eza --icons"
 alias ll="eza -lah --icons --git --group-directories-first"
 alias lt="eza --tree --level=2"
 
-# Docker management
 alias dcu='docker compose up --build'
 alias dcd='docker compose down'
 alias dcl='docker compose logs -f'
 
 # ── Interactive Custom Functions ────────────────────
 
-# Git branch checkout selector via fzf
 gcf() {
   local selected
   selected=$(git branch -a --format='%(refname:short)' | 
@@ -76,7 +74,6 @@ gcf() {
   fi
 }
 
-# Tmux project session space manager via zoxide
 tm() {
   local dir
   dir=$(zoxide query -i)
@@ -106,7 +103,6 @@ tm() {
   fi
 }
 
-# Interactive git log browser with fzf previews
 gl() {
   git log --graph --color=always \
       --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" | \
@@ -116,7 +112,6 @@ gl() {
       --height=80% --border
 }
 
-# Smarter Node/Bun script engine launcher
 nr() {
   if [ ! -f "package.json" ]; then
     echo "No package.json found in this directory."

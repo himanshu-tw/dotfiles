@@ -10,7 +10,7 @@ echo "==> Starting dotfiles setup..."
 echo "==> Installing system packages..."
 sudo apt update && sudo apt upgrade -y
 
-sudo apt install curl alacritty eza ripgrep fzf zoxide tmux neovim btop ffmpeg python-img2pdf fd-find unzip -y
+sudo apt install curl alacritty ghostty eza ripgrep fzf zoxide tmux neovim btop ffmpeg img2pdf fd-find unzip -y
 
 sudo apt remove $(dpkg --get-selections docker.io docker-compose docker-compose-v2 docker-doc docker-buildx podman-docker containerd runc | cut -f1)
 
