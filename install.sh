@@ -11,6 +11,7 @@ echo "==> Installing system packages..."
 sudo dnf upgrade --refresh -y
 
 sudo dnf install curl ghostty eza ripgrep fzf zoxide tmux neovim btop ffmpeg img2pdf fd-find unzip -y
+sudo dnf install hyprland hyprpaper wofi xdg-desktop-portal -y
 
 sudo dnf remove docker docker-client docker-client-latest docker-common docker-latest docker-latest-logrotate docker-logrotate docker-selinux docker-engine docker-engine-selinux -y
 
