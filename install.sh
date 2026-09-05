@@ -8,11 +8,11 @@ echo "==> Starting dotfiles setup..."
 
 # System packages
 echo "==> Installing system packages..."
-sudo apt update && sudo apt upgrade -y
+sudo dnf upgrade --refresh -y
 
-sudo apt install curl alacritty ghostty eza ripgrep fzf zoxide tmux neovim btop ffmpeg img2pdf fd-find unzip -y
+sudo dnf install curl ghostty eza ripgrep fzf zoxide tmux neovim btop ffmpeg img2pdf fd-find unzip -y
 
-sudo apt remove $(dpkg --get-selections docker.io docker-compose docker-compose-v2 docker-doc docker-buildx podman-docker containerd runc | cut -f1)
+sudo dnf remove docker docker-client docker-client-latest docker-common docker-latest docker-latest-logrotate docker-logrotate docker-selinux docker-engine docker-engine-selinux -y
 
 curl -fsSL https://get.docker.com | sh
 sudo systemctl enable --now docker.service

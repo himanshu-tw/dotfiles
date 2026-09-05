@@ -19,7 +19,7 @@ rm -f ~/.tmux.conf
 rm -f ~/.zshrc
 
 stow alacritty
-stow bash
+stow zsh
 stow tmux
 stow nvim
 stow sway
