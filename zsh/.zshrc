@@ -1,5 +1,11 @@
+# ── Oh My ZSH ───────────────────
+export ZSH="$HOME/.oh-my-zsh"
+
 # ── Shell Vim Mode Configuration ────────────────────
 bindkey -v
+ZSH_THEME="robbyrussell"
+
+source $ZSH/oh-my-zsh.sh
 
 # ── Environment Variables & Paths ───────────────────
 export EDITOR=nvim
@@ -21,16 +27,16 @@ setopt HIST_IGNORE_SPACE
 setopt HIST_REDUCE_BLANKS
 
 # ── Modern Tool Initializations ─────────────────────
+autoload -Uz compinit && compinit
 eval "$(~/.local/bin/mise activate zsh)"
 eval "$(zoxide init zsh)"
-eval "$(starship init zsh)"
 
 # ── Tool Shell Completions ──────────────────────────
 eval "$(uv generate-shell-completion zsh)"
 eval "$(uvx --generate-shell-completion zsh)"
 
 # ── Aliases ─────────────────────────────────────────
-alias bashconfig="nvim ~/.zshrc"
+alias zshconfig="nvim ~/.zshrc"
 alias cd='z'
 alias grep="rg"
 alias v='nvim'
@@ -40,10 +46,6 @@ alias ta='tmux attach || tmux new-session'
 alias ls="eza --icons"
 alias ll="eza -lah --icons --git --group-directories-first"
 alias lt="eza --tree --level=2"
-
-alias dcu='docker compose up --build'
-alias dcd='docker compose down'
-alias dcl='docker compose logs -f'
 
 # ── Interactive Custom Functions ────────────────────
 

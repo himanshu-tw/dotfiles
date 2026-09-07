@@ -25,6 +25,9 @@ wget https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsM
 unzip JetBrainsMono.zip -d ~/.local/share/fonts/JetBrainsMono/
 rm JetBrainsMono.zip
 
+# ohmyzsh install
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
 # Mise
 if ! command -v mise &>/dev/null; then
   echo "==> Installing Mise..."
