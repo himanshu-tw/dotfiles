@@ -21,8 +21,8 @@ echo "==> Installing system packages..."
 sudo pacman -Syu --noconfirm
 sudo pacman -S --needed --noconfirm \
   eza ripgrep fzf zoxide tmux neovim btop ffmpeg img2pdf fd unzip \
-  waybar wofi sway swaync xdg-desktop-portal \
-  zsh wget bat
+  sway swaybg swaylock swayidle waybar rofi-wayland swaync xdg-desktop-portal-wlr \
+  zsh git wget lazygit bat
 
 yay -S --needed --noconfirm ghostty wofi ttf-jetbrains-mono-nerd google-chrome
 
