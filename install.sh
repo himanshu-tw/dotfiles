@@ -24,7 +24,7 @@ sudo pacman -S --needed --noconfirm \
   waybar wofi sway swaync xdg-desktop-portal \
   zsh wget bat
 
-yay -S --needed --noconfirm ghostty wofi ttf-jetbrains-mono-nerd
+yay -S --needed --noconfirm ghostty wofi ttf-jetbrains-mono-nerd google-chrome
 
 # Docker
 if ! command -v docker &>/dev/null; then
