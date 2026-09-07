@@ -8,5 +8,7 @@ vim.opt.shiftwidth = 4
 vim.opt.number = true
 vim.opt.relativenumber = true
 
+vim.opt.guicursor = "n-v-i:block"
+
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "

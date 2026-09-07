@@ -1,32 +1,44 @@
 #!/bin/bash
-
 set -e
-
 DOTFILES="$HOME/dotfiles"
-
 echo "==> Starting dotfiles setup..."
+
+sudo pacman -S --needed --noconfirm base-devel git reflector
+
+# Refresh mirrorlist
+sudo reflector --latest 20 --sort rate --save /etc/pacman.d/mirrorlist
+
+# yay (AUR helper) - needed for ghostty, nerd fonts, etc.
+if ! command -v yay &>/dev/null; then
+  echo "==> Installing yay..."
+  git clone https://aur.archlinux.org/yay.git /tmp/yay
+  (cd /tmp/yay && makepkg -si --noconfirm)
+  rm -rf /tmp/yay
+fi
 
 # System packages
 echo "==> Installing system packages..."
-sudo dnf upgrade --refresh -y
+sudo pacman -Syu --noconfirm
+sudo pacman -S --needed --noconfirm \
+  eza ripgrep fzf zoxide tmux neovim btop ffmpeg img2pdf fd unzip \
+  hyprland hyprpaper waybar rofi-wayland swaync xdg-desktop-portal-hyprland \
+  zsh git wget lazygit bat
 
-sudo dnf install curl ghostty eza ripgrep fzf zoxide tmux neovim btop ffmpeg img2pdf fd-find unzip -y
-sudo dnf install hyprland hyprpaper wofi xdg-desktop-portal -y
+yay -S --needed --noconfirm ghostty wofi ttf-jetbrains-mono-nerd
 
-sudo dnf remove docker docker-client docker-client-latest docker-common docker-latest docker-latest-logrotate docker-logrotate docker-selinux docker-engine docker-engine-selinux -y
-
-curl -fsSL https://get.docker.com | sh
-sudo systemctl enable --now docker.service
-sudo usermod -aG docker $USER
-
-# JetBrains Mono Nerd Font
-mkdir -p ~/.local/share/fonts
-wget https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.zip
-unzip JetBrainsMono.zip -d ~/.local/share/fonts/JetBrainsMono/
-rm JetBrainsMono.zip
+# Docker
+if ! command -v docker &>/dev/null; then
+  echo "==> Installing Docker..."
+  sudo pacman -S --needed --noconfirm docker docker-compose
+  sudo systemctl enable --now docker.service
+  sudo usermod -aG docker "$USER"
+fi
 
 # ohmyzsh install
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+if [ ! -d "$HOME/.oh-my-zsh" ]; then
+  echo "==> Installing oh-my-zsh..."
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+fi
 
 # Mise
 if ! command -v mise &>/dev/null; then
@@ -36,16 +48,20 @@ else
   echo "==> Mise already installed, skipping."
 fi
 
-# Starship
-curl -sS https://starship.rs/install.sh | sh
-
+# oh-my-zsh writes a real .zshrc - move it out of the way so stow doesn't choke on it
+[ -f "$HOME/.zshrc" ] && [ ! -L "$HOME/.zshrc" ] && mv "$HOME/.zshrc" "$HOME/.zshrc.bak"
 
 # Symlinks
 echo "==> Creating symlinks..."
-./symlink-stow.sh
+"$DOTFILES/symlink-stow.sh"
 
 echo "==> GitHub SSH setup"
-./git-ssh/github-ssh-setup.sh
+"$DOTFILES/git-ssh/github-ssh-setup.sh"
+
+# Default shell to zsh
+if [ "$SHELL" != "$(which zsh)" ]; then
+  chsh -s "$(which zsh)"
+fi
 
 echo ""
 echo "==> Done! Restart terminal or run: exec zsh"
