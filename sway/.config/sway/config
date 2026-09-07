@@ -28,7 +28,7 @@ default_border none
 
 exec waybar
 
-output * bg ~/Downloads/tree.jpg fill
+output * bg ~/.config/sway/background/tree.jpg fill
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
