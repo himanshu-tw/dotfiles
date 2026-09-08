@@ -15,11 +15,6 @@ sudo pacman -Syu --noconfirm
 sudo pacman -S --needed --noconfirm ripgrep fzf tmux neovim btop ffmpeg img2pdf unzip wget zsh fd bat eza zoxide
 
 ### 3. Nerd Font (via AUR)
-if ! command -v yay &>/dev/null; then
-  git clone https://aur.archlinux.org/yay.git /tmp/yay
-  (cd /tmp/yay && makepkg -si --noconfirm)
-  rm -rf /tmp/yay
-fi
 yay -S --needed --noconfirm ttf-jetbrains-mono-nerd
 
 ### 4. Docker
