@@ -12,7 +12,7 @@ sudo pacman -Syu --noconfirm
 ./yay-setup.sh
 
 ### 2. Common CLI tools
-sudo pacman -S --needed --noconfirm ripgrep fzf tmux neovim btop ffmpeg img2pdf unzip wget zsh fd bat eza zoxide
+sudo pacman -S --needed --noconfirm ripgrep fzf tmux neovim btop ffmpeg img2pdf unzip wget zsh fd bat eza zoxide ghostty
 
 ### 3. Nerd Font (via AUR)
 yay -S --needed --noconfirm ttf-jetbrains-mono-nerd
