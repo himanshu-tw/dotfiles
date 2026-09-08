@@ -18,12 +18,13 @@ rm -rf ~/.config/alacritty/alacritty.toml
 rm -f ~/.tmux.conf
 rm -f ~/.zshrc
 
-stow alacritty
 stow zsh
 stow tmux
 stow nvim
-stow hypr
+stow sway
 stow waybar
 stow wofi
 stow starship
 stow ghostty
+stow .tmux-cht-command
+stow .tmux-cht-languages
