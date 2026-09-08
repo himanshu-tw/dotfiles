@@ -8,6 +8,9 @@ sudo pacman -S --needed --noconfirm base-devel git reflector
 sudo reflector --latest 20 --sort rate --save /etc/pacman.d/mirrorlist
 sudo pacman -Syu --noconfirm
 
+### yay AUR setup
+./yay-setup.sh
+
 ### 2. Common CLI tools
 sudo pacman -S --needed --noconfirm ripgrep fzf tmux neovim btop ffmpeg img2pdf unzip wget zsh fd bat eza zoxide
 
