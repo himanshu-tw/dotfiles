@@ -8,7 +8,7 @@ sudo apt update && sudo apt upgrade -y
 sudo apt install unzip build-essential -y
 
 ### 2. Common CLI tools
-sudo apt install -y ripgrep fzf tmux neovim btop ffmpeg img2pdf unzip wget zsh fd-find bat eza zoxide ghostty stow
+sudo apt install -y ripgrep fzf tmux neovim btop ffmpeg img2pdf unzip wget zsh fd-find bat eza zoxide ghostty stow sway swaybg wofi waybar
 
 ### 3. Nerd Font
 FONT_DIR="$HOME/.local/share/fonts"
