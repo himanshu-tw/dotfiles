@@ -28,7 +28,8 @@ setopt HIST_REDUCE_BLANKS
 
 # ── Modern Tool Initializations ─────────────────────
 autoload -Uz compinit && compinit
-eval "$(~/.local/bin/mise activate zsh)"
+# eval "$(~/.local/bin/mise activate zsh)"
+eval "$(/usr/bin/mise activate zsh)"
 eval "$(zoxide init zsh)"
 
 # ── Tool Shell Completions ──────────────────────────
