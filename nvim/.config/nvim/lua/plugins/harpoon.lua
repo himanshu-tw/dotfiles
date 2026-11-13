@@ -12,12 +12,12 @@ return {
 		harpoon:setup()
 
 		-- Add current file
-		vim.keymap.set("n", "<leader>ha", function()
+		vim.keymap.set("n", "<M-a>", function()
 			harpoon:list():add()
 		end, { desc = "Harpoon Add File" })
 
         -- remove current file
-        vim.keymap.set("n", "<leader>hd", function()
+        vim.keymap.set("n", "<M-d>", function()
             harpoon:list():remove()
         end, { desc = "Harpoon Remove File" })
 
